@@ -1,18 +1,13 @@
 import React from 'react';
 import './Offers.css';
 
-class Offers extends React.Component {
-	constructor(){
-		super();
-  }
-  
+class Offers extends React.Component {  
 	render() {
     return (
       <div className="offers">
-        Oferty
+        <h3>Oferty: w przygotowaniu</h3>
       </div>
     )}
 };
-
 
 export default Offers;
