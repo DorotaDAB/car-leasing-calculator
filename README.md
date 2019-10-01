@@ -1,6 +1,17 @@
 # car-leasing-calculator
 
+Application for car leasing offer calculation: in progress.
 
+### Features implemented so far
+* Fetching makes list from public catalogue of NHTSA (https://vpic.nhtsa.dot.gov/api) 
+
+### Features planned
+* Offers calculator: 
+  * vehicle choice
+  * parameters chice: Term, Capital Contribtion, Residual Value etc...
+  * PMT function integration: Financing cost calculated on a basis of defined parameters
+  * Services
+  * Total installment calculation
 
 
 -----
