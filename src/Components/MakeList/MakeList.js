@@ -11,9 +11,12 @@ class MakeList extends React.Component {
 
     this.state = {
       makes: [],
+      inputValue: "marka pojazdu"
     }
 
     this.getMakes = this.getMakes.bind(this);
+    this.setMakeFilter = this.setMakeFilter.bind(this)
+    this.removeMakeFilter = this.removeMakeFilter.bind(this)
   }
   
   getMakes() {
@@ -43,12 +46,27 @@ class MakeList extends React.Component {
     )}
   }
 
+  setMakeFilter(ev) {
+    const { makes } = this.state;
+  
+    let makesToDisplay = makes.filter(make => {
+        return make.MakeName.toLowerCase().startsWith(ev.target.value.toLowerCase())
+      })
+  
+    this.setState({makes: makesToDisplay})
+  }
+
+  removeMakeFilter() {
+    this.getMakes();
+  };
+
 	render() {
     return (
       <>
         <div className="make-search">
           <p>Wybierz markę pojazdu (filtr w przygotowaniu)</p>
-          <input type="text" placeholder="marka pojazdu"></input>
+          <input type="text" placeholder={this.state.inputValue} onChange={this.setMakeFilter}></input>
+          <button onClick={this.removeMakeFilter}>wyczyść filtr</button>
         </div>
         {this.displayMakes()};
       </>
