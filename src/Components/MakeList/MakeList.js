@@ -15,13 +15,17 @@ class MakeList extends React.Component {
 
     this.getMakes = this.getMakes.bind(this);
   }
-
+  
   getMakes() {
     axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json`)
       .then(res => {
         this.setState({ makes: res.data.Results});
       })
   }
+
+  componentDidMount() {
+    this.getMakes();
+  }  
 
   displayMakes() {
     if (this.state.makes.length > 0) {
@@ -39,15 +43,11 @@ class MakeList extends React.Component {
     )}
   }
 
-  componentDidMount() {
-     this.getMakes();
-  }
-
 	render() {
     return (
       <>
         <div className="make-search">
-          <p>Wybierz marke pojazdu (filtr w przygotowaniu)</p>
+          <p>Wybierz markę pojazdu (filtr w przygotowaniu)</p>
           <input type="text" placeholder="marka pojazdu"></input>
         </div>
         {this.displayMakes()};
