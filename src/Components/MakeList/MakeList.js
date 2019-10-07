@@ -11,12 +11,11 @@ class MakeList extends React.Component {
 
     this.state = {
       makes: [],
-      inputValue: "marka pojazdu"
+      currentFilter: ""
     }
 
     this.getMakes = this.getMakes.bind(this);
-    this.setMakeFilter = this.setMakeFilter.bind(this)
-    this.removeMakeFilter = this.removeMakeFilter.bind(this)
+    this.filterValueHandler = this.filterValueHandler.bind(this)
   }
   
   getMakes() {
@@ -34,9 +33,11 @@ class MakeList extends React.Component {
     if (this.state.makes.length > 0) {
       return (
         <div className="make-list">
-          <p>Lista wszystkich marek i modeli samochodów osobowych</p>
+          <p>Lista marek i modeli samochodów osobowych</p>
           <ul>
-            {this.state.makes.map( make => <Make name={make.MakeName} id={make.MakeId} key={make.MakeId}/>)}
+            {this.state.makes
+              .filter(make => {return make.MakeName.toLowerCase().startsWith(this.state.currentFilter.toLowerCase())})
+              .map( make => <Make name={make.MakeName} id={make.MakeId} key={make.MakeId}/>)}
           </ul> 
         </div> 
       )
@@ -46,29 +47,18 @@ class MakeList extends React.Component {
     )}
   }
 
-  setMakeFilter(ev) {
-    const { makes } = this.state;
-  
-    let makesToDisplay = makes.filter(make => {
-        return make.MakeName.toLowerCase().startsWith(ev.target.value.toLowerCase())
-      })
-  
-    this.setState({makes: makesToDisplay})
+  filterValueHandler(ev) {
+    this.setState({currentFilter: ev.target.value});
   }
-
-  removeMakeFilter() {
-    this.getMakes();
-  };
 
 	render() {
     return (
       <>
         <div className="make-search">
-          <p>Wybierz markę pojazdu (filtr w przygotowaniu)</p>
-          <input type="text" placeholder={this.state.inputValue} onChange={this.setMakeFilter}></input>
-          <button onClick={this.removeMakeFilter}>wyczyść filtr</button>
+          <p>Wyszukaj markę pojazdu</p>
+          <input type="text" placeholder="Wpisz markę" onChange={this.filterValueHandler}></input>
         </div>
-        {this.displayMakes()};
+        {this.displayMakes()}
       </>
     )
   }
