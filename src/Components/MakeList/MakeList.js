@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Make from './Make/Make';
 import './MakeList.css';
 
@@ -33,7 +33,6 @@ class MakeList extends React.Component {
     if (this.state.makes.length > 0) {
       return (
         <div className="make-list">
-          <p>Lista marek i modeli samochodów osobowych</p>
           <ul>
             {this.state.makes
               .filter(make => {return make.MakeName.toLowerCase().startsWith(this.state.currentFilter.toLowerCase())})
@@ -54,11 +53,14 @@ class MakeList extends React.Component {
 	render() {
     return (
       <>
-        <div className="make-search">
-          <p>Wyszukaj markę pojazdu</p>
-          <input type="text" placeholder="Wpisz markę" onChange={this.filterValueHandler}></input>
+        <div className="make-container">
+        <p>Lista marek i modeli samochodów osobowych</p>
+          <div className="make-search">
+            <FontAwesomeIcon icon={faSearch}/>
+            <input type="text" placeholder="Wpisz markę" onChange={this.filterValueHandler}></input> 
+          </div>
+            {this.displayMakes()}
         </div>
-        {this.displayMakes()}
       </>
     )
   }

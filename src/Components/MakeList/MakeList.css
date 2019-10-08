@@ -1,4 +1,26 @@
+.make-container {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  padding: 2vw;
+}
+
+.make-search {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+  margin: auto;
+  padding: 1vw;
+  width: 80%;
+}
+
+.make-list {
+  text-align: left;
+  padding: 1vw;
+}
+
 .make-list p {
   font-weight: bold;
 }
-

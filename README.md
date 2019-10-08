@@ -13,7 +13,7 @@ Application for car leasing offer calculation: in progress.
   * Services
   * Total installment calculation
 
-
+Photo by toine G on Unsplash
 -----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
